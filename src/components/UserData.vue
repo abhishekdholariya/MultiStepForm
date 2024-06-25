@@ -13,7 +13,7 @@
       <li><strong>Position:</strong> {{ formData.position }}</li>
       <li v-if="formData.profile">
         <strong>Profile Image:</strong><br />
-        <img :src="profileImg" alt="Profile Image" style="max-width: 200px; max-height: 200px;" />
+        <img :src="profileImage" alt="Profile Image" style="max-width: 200px; max-height: 200px;" />
       </li>
     </ul>
     <button @click="refreshForm">Submit Form</button>
@@ -24,11 +24,11 @@
 export default {
   name: 'UserData',
   props: ['formData'],
-  // computed: {
-  //   profileImage() {
-  //     return URL.createObjectURL(this.formData.profile);
-  //   }
-  // },
+  computed: {
+    profileImage() {
+      return URL.createObjectURL(this.formData.profile);
+    }
+  },
   methods: {
     refreshForm() {
       this.$emit('refresh-form');

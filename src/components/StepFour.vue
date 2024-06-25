@@ -20,8 +20,7 @@
     name: 'StepThree',
     data() {
         return {
-            validateField:false,
-            profileImg:''
+            validateField:false
         }
     },
     props: ['formData'],
@@ -40,8 +39,6 @@
         },
         handleFileUpload(event) {
             this.formData.profile = event.target.files[0];
-            this.profileImg = URL.createObjectURL(this.formData.profile);
-
         },
         submitForm() {
             this.$emit('submit-form');
