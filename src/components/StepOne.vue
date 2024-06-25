@@ -21,6 +21,8 @@
         <label for="phonenumber">Phone Number:</label>
         <input type="tel" v-model="formData.phonenumber" id="phonenumber" placeholder="Enter PhoneNumber" />
         <span v-if="validateField && !formData.phonenumber" class="error">Phone Number is required</span>
+        <span v-if="validateField && formData.phonenumber && !isValidPhoneNumber(formData.phonenumber)" class="error">Invalid phone number</span>
+        
       </div>
       <div class="form-group">
         <label for="email">Email:</label>
@@ -52,11 +54,15 @@
         }
       },
       validateForm() {
-        return this.formData.fname && this.formData.lname && this.formData.bod && this.formData.phonenumber && this.formData.email && this.isValidEmail(this.formData.email);
+        return this.formData.fname && this.formData.lname && this.formData.bod && this.formData.phonenumber && this.isValidPhoneNumber(this.formData.phonenumber) && this.formData.email && this.isValidEmail(this.formData.email);
       },
       isValidEmail(email) {
-        const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-        return emailPattern.test(email);
+        const emailValidate = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        return emailValidate.test(email);
+      },
+      isValidPhoneNumber(phonenumber) {
+        const phoneValidate = /^\d{10}$/;
+        return phoneValidate.test(phonenumber);
       }
     }
   }
