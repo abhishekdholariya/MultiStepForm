@@ -5,12 +5,11 @@
 </template>
 
 <script>
-import MultiStepForm from './components/MultiStep.vue';
-
-export default {
-  name: 'App',
-  components: {
-    MultiStepForm
+  import MultiStepForm from './components/MultiStep.vue';
+  export default {
+    name: 'App',
+    components: {
+      MultiStepForm
+    }
   }
-}
 </script>

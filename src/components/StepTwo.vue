@@ -21,33 +21,33 @@
 </template>
 
 <script>
-export default {
-    name: 'StepTwo',
-    props: ['formData'],
-    data() {
-        return {
-            validateField: false,
-        };
-    },
-    methods: {
-        validateAndNextStep() {
-            this.validateField = true;
-            if (this.validateForm()) {
-                this.nextStep();
+    export default {
+        name: 'StepTwo',
+        props: ['formData'],
+        data() {
+            return {
+                validateField: false,
+            };
+        },
+        methods: {
+            validateAndNextStep() {
+                this.validateField = true;
+                if (this.validateForm()) {
+                    this.nextStep();
+                }
+            },
+            validateForm() {
+                if (!this.formData.degree || !this.formData.school) {
+                    return false;
+                }
+                return true;
+            },
+            nextStep() {
+                this.$emit('next-step');
+            },
+            previousStep() {
+                this.$emit('previous-step');
             }
-        },
-        validateForm() {
-            if (!this.formData.degree || !this.formData.school) {
-                return false;
-            }
-            return true;
-        },
-        nextStep() {
-            this.$emit('next-step');
-        },
-        previousStep() {
-            this.$emit('previous-step');
         }
     }
-}
 </script>

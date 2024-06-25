@@ -1,18 +1,18 @@
 <template>
-    <div class="container">
-      <div class="progress-bar">
-        <div :class="{'active': currentStep === 1, 'clickable': currentStep > 1}" @click="goToStep(1)">Personal Information</div>
-        <div :class="{'active': currentStep === 2, 'clickable': currentStep > 2}" @click="goToStep(2)">Education</div>
-        <div :class="{'active': currentStep === 3, 'clickable': currentStep > 3}" @click="goToStep(3)">Work Experiences</div>
-        <div :class="{'active': currentStep === 4, 'clickable': currentStep > 4}" @click="goToStep(4)">Select Profile</div>
-        </div>
-      <component :is="currentStepComponent" :formData="formData" 
-          @next-step="nextStep" @previous-step="previousStep" 
-          @submit-form="submitForm" @refresh-form="refreshForm"></component>
-    </div>
-  </template>
+  <div class="container">
+    <div class="progress-bar">
+      <div :class="{'active': currentStep === 1, 'clickable': currentStep > 1}" @click="goToStep(1)">Personal Information</div>
+      <div :class="{'active': currentStep === 2, 'clickable': currentStep > 2}" @click="goToStep(2)">Education</div>
+      <div :class="{'active': currentStep === 3, 'clickable': currentStep > 3}" @click="goToStep(3)">Work Experiences</div>
+      <div :class="{'active': currentStep === 4, 'clickable': currentStep > 4}" @click="goToStep(4)">Select Profile</div>
+      </div>
+    <component :is="currentStepComponent" :formData="formData" 
+        @next-step="nextStep" @previous-step="previousStep" 
+        @submit-form="submitForm" @refresh-form="refreshForm"></component>
+  </div>
+</template>
   
-  <script>
+<script>  
   import StepOne from './StepOne.vue';
   import StepTwo from './StepTwo.vue';
   import StepThree from './StepThree.vue';
@@ -100,91 +100,91 @@
       }
     }
   }
-  </script>
+</script>
   
-  <style>
-    .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    padding: 20px;
-    box-sizing: border-box;
-    }
+<style>
+  .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+  }
 
-    .content {
-    max-width: 600px;
-    width: 100%;
-    padding: 20px;
-    background: #f8f9fa;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
+  .content {
+  max-width: 600px;
+  width: 100%;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
 
-    .form-group {
-    margin-bottom: 15px;
-    }
+  .form-group {
+  margin-bottom: 15px;
+  }
 
-    .form-group label {
-    display: block;
-    margin-bottom: 5px;
-    color: #333;
-    }
+  .form-group label {
+  display: block;
+  margin-bottom: 5px;
+  color: #333;
+  }
 
-    .form-group input {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    }
+  .form-group input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  }
 
-    .button-container {
-    text-align: right;
-    }
+  .button-container {
+  text-align: right;
+  }
 
-    .button {
-    padding: 10px 20px;
-    color: #fff;
-    background-color: #007bff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    }
+  .button {
+  padding: 10px 20px;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  }
 
-    .button:hover {
-    background-color: #0056b3;
-    }
+  .button:hover {
+  background-color: #0056b3;
+  }
 
-    .error {
-    color: #e62323;
-    font-size: 0.9em;
-    }
-    
-    .progress-bar {
-        display: flex;
-        margin-bottom: 20px;
-        width: 100%;
-        max-width: 600px;
-    }
-    
-    .progress-bar div {
-        flex: 1;
-        padding: 10px;
-        text-align: center;
-        cursor: not-allowed;
-        border: 1px solid #ccc;
-    }
-    
-    .progress-bar div.active {
-        background-color: lightblue;
-        cursor: pointer;
-    }
-    
-    .progress-bar div.clickable:hover {
-        background-color: lightgreen;
-        cursor: pointer;
-    }
-  </style>
+  .error {
+  color: #e62323;
+  font-size: 0.9em;
+  }
+  
+  .progress-bar {
+      display: flex;
+      margin-bottom: 20px;
+      width: 100%;
+      max-width: 600px;
+  }
+  
+  .progress-bar div {
+      flex: 1;
+      padding: 10px;
+      text-align: center;
+      cursor: not-allowed;
+      border: 1px solid #ccc;
+  }
+  
+  .progress-bar div.active {
+      background-color: lightblue;
+      cursor: pointer;
+  }
+  
+  .progress-bar div.clickable:hover {
+      background-color: lightgreen;
+      cursor: pointer;
+  }
+</style>
   

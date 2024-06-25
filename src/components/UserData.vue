@@ -21,18 +21,18 @@
 </template>
 
 <script>
-export default {
-  name: 'UserData',
-  props: ['formData'],
-  computed: {
-    profileImage() {
-      return URL.createObjectURL(this.formData.profile);
-    }
-  },
-  methods: {
-    refreshForm() {
-      this.$emit('refresh-form');
+  export default {
+    name: 'UserData',
+    props: ['formData'],
+    computed: {
+      profileImage() {
+        return URL.createObjectURL(this.formData.profile);
+      }
+    },
+    methods: {
+      refreshForm() {
+        this.$emit('refresh-form');
+      }
     }
   }
-}
 </script>
