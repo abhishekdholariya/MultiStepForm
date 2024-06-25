@@ -1,43 +1,55 @@
 <template>
-    <!-- <div>
-      <h2>Step 3</h2>
-      <form @submit.prevent="submitForm">
-        <label for="password">Password:</label>
-        <input type="password" v-model="formData.password" id="password" required />
-        <button type="button" @click="previousStep">Previous</button>
-        <button type="submit">Submit</button>
-      </form>
-    </div> -->
     <div class="container">
         <div class="content">
                 <h2>User Photo</h2>
                 <div class="form-group">
                     <label for="profile">Select Profile</label>
                     <input type="file" id="profile" @change="handleFileUpload" required />
+                    <span v-if="validateField && !formData.profile" class="error">Profile is required</span>
                 </div>
                 <div class="button-container">
                     <button type="button" @click="previousStep">Previous</button>
-                    <button type="submit" @click="submitForm">Submit</button>
+                    <button type="submit" @click="validateAndNextStep">Preview Form</button>
                 </div>
         </div>
     </div>
-  </template>
+</template>
   
-  <script>
+<script>
   export default {
     name: 'StepThree',
+    data() {
+        return {
+            validateField:false,
+            profileImg:''
+        }
+    },
     props: ['formData'],
     methods: {
-      handleFileUpload(event) {
-        this.formData.profile = event.target.files[0];
-      },
-      submitForm() {
-        this.$emit('submit-form');
-      },
-      previousStep() {
-        this.$emit('previous-step');
-      }
+        validateAndNextStep() {
+            this.validateField=true;
+            if (this.validateForm()) {
+                this.submitForm();
+            }
+        },
+        validateForm() {
+            if (!this.formData.profile) {
+                return false;
+            }
+            return true;
+        },
+        handleFileUpload(event) {
+            this.formData.profile = event.target.files[0];
+            this.profileImg = URL.createObjectURL(this.formData.profile);
+
+        },
+        submitForm() {
+            this.$emit('submit-form');
+        },
+        previousStep() {
+            this.$emit('previous-step');
+        }
     }
   }
-  </script>
+</script>
   

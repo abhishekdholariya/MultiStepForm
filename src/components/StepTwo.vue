@@ -1,31 +1,37 @@
 <template>
     <div class="container">
         <div class="content">
-                <h2>Education</h2>
-                <div class="form-group">
-                    <label for="degree">Degree</label>
-                    <input type="text" id="degree" v-model="formData.degree" required />
-                    <span v-if="!formData.degree" class="error">Degree is required</span>
-                </div>
-                <div class="form-group">
-                    <label for="school">School/College</label>
-                    <input type="text" id="school" v-model="formData.school" required />
-                    <span v-if="!formData.school" class="error">School is required</span>
-                </div>
-                <div class="button-container">
-                    <button class="button" type="button" @click="previousStep">Prev</button>
-                    <button class="button" @click="validateAndNextStep" type="submit">Next</button>
-                </div>
+            <h2 class="form-group">Education</h2>
+            <div class="form-group">
+                <label for="degree">Degree</label>
+                <input type="text" id="degree" v-model="formData.degree" placeholder="Enter Degree Name" />
+                <span v-if="validateField && !formData.degree" class="error">Degree is required</span>
+            </div>
+            <div class="form-group">
+                <label for="school">School/College</label>
+                <input type="text" id="school" v-model="formData.school" placeholder="Enter College Name" />
+                <span v-if="validateField && !formData.school" class="error">School is required</span>
+            </div>
+            <div class="button-container">
+                <button class="button" type="button" @click="previousStep">Prev</button>
+                <button class="button" @click="validateAndNextStep" type="submit">Next</button>
+            </div>
         </div>
     </div>
-  </template>
-  
-  <script>
-  export default {
+</template>
+
+<script>
+export default {
     name: 'StepTwo',
     props: ['formData'],
+    data() {
+        return {
+            validateField: false,
+        };
+    },
     methods: {
         validateAndNextStep() {
+            this.validateField = true;
             if (this.validateForm()) {
                 this.nextStep();
             }
@@ -43,25 +49,5 @@
             this.$emit('previous-step');
         }
     }
-  }
-  </script>
-  
-<style scoped>
-.container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
 }
-.content {
-    padding: 20px;
-    background: #f8f9fa;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-.form-group {
-    color: black;
-}
-.button-container {
-    text-align: right;
-}
-</style>
+</script>

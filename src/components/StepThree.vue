@@ -1,37 +1,47 @@
 <template>
-    <!-- <div>
-      <h2>Step 3</h2>
-      <form @submit.prevent="submitForm">
-        <label for="password">Password:</label>
-        <input type="password" v-model="formData.password" id="password" required />
-        <button type="button" @click="previousStep">Previous</button>
-        <button type="submit">Submit</button>
-      </form>
-    </div> -->
     <div class="container">
         <div class="content">
-                <h2>Work Experiences</h2>
+                <h2 class="form-group">Work Experiences</h2>
                 <div class="form-group">
-                    <label for="experience">Experience 1</label>
-                    <input type="text" id="experience" v-model="formData.experience" required />
+                    <label for="experience">Experience</label>
+                    <input type="text" id="experience" v-model="formData.experience" placeholder="Enter Experience" />
+                    <span v-if="validateField && !formData.experience" class="error">Experience is required</span>
                 </div>
                 <div class="form-group">
                     <label for="position">Position</label>
-                    <input type="text" id="position" v-model="formData.position" required />
+                    <input type="text" id="position" v-model="formData.position" placeholder="Enter Position" />
+                    <span v-if="validateField && !formData.position" class="error">Position is required</span>
                 </div>
                 <div class="button-container">
                     <button class="button" type="button" @click="previousStep">Prev</button>
-                    <button class="button" @click="nextStep" type="submit">Next</button>
+                    <button class="button" @click="validateAndNextStep" type="submit">Next</button>
                 </div>
         </div>
     </div>
-  </template>
+</template>
   
-  <script>
+<script>
   export default {
     name: 'StepThree',
     props: ['formData'],
+    data() {
+      return {
+        validateField:false
+      }
+    },
     methods: {
+        validateAndNextStep() {
+          this.validateField = true;
+            if (this.validateForm()) {
+                this.nextStep();
+            }
+        },
+        validateForm() {
+            if (!this.formData.experience || !this.formData.position) {
+                return false;
+            }
+            return true;
+        },
       nextStep() {
         this.$emit('next-step');
       },
@@ -40,25 +50,5 @@
       }
     }
   }
-  </script>
-
-  <style scoped>
-.container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-}
-.content {
-    padding: 20px;
-    background: #f8f9fa;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-.form-group {
-    color: black;
-}
-.button-container {
-    text-align: right;
-}
-</style>
+</script>
   
